@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* Setting font face */
+        body {
+            font-family: sans-serif;
+        }
+
+        /* Breaks up examples into individual rows */
+        .row {
+            display: block;
+            overflow: auto;
+            width: 100%;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #027cf3;
+        }
+
+        /* Colored boxes with a default size */
+        div.box {
+            margin-right: 10px; 
+            height: 100px;
+            width: 100px;
+            border: 1px solid #026acf;
+            background-color: #027cf3;
+            color: white;
+            margin-bottom: 10px;
+            display: inline-block;
+            float: left;
+        }
+
+        /* Colored boxes with a slightly smaller size */
+        div.box.smaller {
+            width: 50px;
+            height: 50px;
+        }        
+
+        /* Colored boxes with an even smaller size */        
+        div.box.even-smaller {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* divs with the class "special" who are children 
+           of elements with the class "static" */
+        .static div.special {
+            position: static;
+        }
+        
+        /* divs with the class "special" who are children 
+           of elements with the class "relative" */
+        .relative div.special {
+            position: relative;
+            top: 40px;
+            left: 40px;
+        }
+        
+        /* divs with the class "special" who are children 
+            of elements with the class "absolute" */
+        .absolute div.special {
+            position: absolute;
+            top: 120px;
+            left: 40px;
+        }
+        
+        /* divs with the class "special" who are children 
+            of elements with the class "absolute-nested" */
+        .absolute-nested div.special {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
+        .absolute-nested div.parent {
+            position: relative;
+        }
+
+        /* divs with the class "special" who are children 
+           of elements with the class "fixed" */
+        .fixed div.special {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Absolute example -->
+    <div class="row absolute">
+        <h3>Absolute element</h3>
+        <p>The absolute element honors the parent (in this case, the page because it has no relative parent). The rest of the elements stack behind it as if it did not exist.</p>
+        <div class="box">1</div>
+        <div class="box special">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <!-- Static example -->
+    <div class="row static">
+        <h3>Static elements</h3>
+        <p>These are positioned like elements are normally.</p>
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <!-- Relative example -->
+    <div class="row relative" style="height: 300px;">
+        <h3>Relative element</h3>
+        <p>This element (2) is bumped from its original position, but other elements obey its space as if it never moved.</p>
+        <div class="box">1</div>
+        <div class="box special">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <!-- Absolute example with a different absolute parent -->
+    <div class="row absolute-nested">
+        <h3>Absolute, nested element</h3>
+        <p>The small square here obeys the larger square because the larger square is <em>positioned</em>.</p>
+        <div class="box">1</div>
+        <div class="box parent">
+            <div class="box smaller">
+                <div class="box even-smaller special">
+                    2
+                </div>
+            </div>
+        </div>
+        <div class="box">3</div>
+    </div>
+
+    <!-- Fixed example -->
+    <div class="row fixed">
+        <h3>Fixed element</h3>
+        <p>You may want to comment these out to get rid of the sticky box. The second square here sticks to the viewport. The rest of the elements stack behind it as if it did not exist.</p>
+        <div class="box">1</div>
+        <div class="box special">2</div>
+        <div class="box">3</div>
+    </div>
+</body>
+</html>
